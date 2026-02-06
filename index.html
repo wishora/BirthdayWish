@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Happy Birthday ❤️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            height: auto;
+            background: linear-gradient(270deg, #ff758c, #ff7eb3, #bfa0c5, #df7ac2, #df77d6);
+            background-size: 1000% 1000%;
+            animation: bgMove 20s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            overflow-y: auto;
+            padding: 10px 10px 0;
+            /* no bottom padding */
+            color: #fff;
+            text-align: center;
+            position: relative;
+
+        }
+
+        @keyframes bgMove {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Floating hearts */
+        .hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 20px;
+            animation: floatHeart linear infinite;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .layout {
+            display: grid;
+
+
+            align-items: start;
+
+            grid-template-columns: 1.4fr 420px 1.4fr;
+
+            column-gap: 20px;
+            /* left–right */
+            row-gap: 24px;
+            width: 100%;
+            max-width: 1400px;
+            padding: 0px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* SIDE GRID – FINAL */
+        /* SIDE GRID – FINAL */
+        .side-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(200px, 1fr));
+            column-gap: 20px;
+            /* left–right gap */
+            row-gap: 30px;
+            /* 👈 IMAGE-TO-IMAGE GAP (THIS is what you want) */
+            opacity: 0;
+            transform: scale(0.8);
+            pointer-events: none;
+            transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+            row-gap: 40px
+        }
+
+        .side-grid.show {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+
+        /* Tablet */
+        @media (max-width: 900px) {
+            .side-grid {
+                grid-template-columns: repeat(2, 1fr);
+                row-gap: 24px;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 480px) {
+            .side-grid {
+                grid-template-columns: repeat(2, 1fr);
+                row-gap: 20px;
+                column-gap: 12px;
+            }
+        }
+
+        .box img {
+            display: block;
+        }
+
+
+
+
+
+        .side-grid.show {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+
+        .box {
+            height: 160px;
+            border-radius: 24px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(12px);
+            box-shadow:
+                inset 0 0 0 2px rgba(255, 255, 255, 0.5),
+                0 15px 35px rgba(0, 0, 0, 0.3);
+            position: relative;
+            transform: translateY(0);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+        }
+
+        .box:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow:
+                inset 0 0 0 2px rgba(255, 255, 255, 0.8),
+                0 25px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .box:hover::before {
+            opacity: 1;
+        }
+
+        .box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .box:hover img {
+            transform: scale(1.1);
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(20px);
+            padding: 40px 30px;
+            border-radius: 30px;
+            max-width: 420px;
+            width: 100%;
+            box-shadow:
+                0 25px 50px rgba(0, 0, 0, 0.3),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+            animation: cardEntrance 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes cardEntrance {
+            0% {
+                opacity: 0;
+                transform: scale(0.7) rotateY(20deg);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1) rotateY(0deg);
+            }
+        }
+
+
+
+
+        /* Circular photo with glow */
+        .photo-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+        }
+
+        .photo {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #fff;
+            box-shadow:
+                0 0 30px rgba(255, 255, 255, 0.8),
+                0 0 60px rgba(255, 182, 193, 0.6);
+            animation: photoGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes photoGlow {
+
+            0%,
+            100% {
+                box-shadow:
+                    0 0 30px rgba(255, 255, 255, 0.8),
+                    0 0 60px rgba(255, 182, 193, 0.6);
+            }
+
+            50% {
+                box-shadow:
+                    0 0 40px rgba(255, 255, 255, 1),
+                    0 0 80px rgba(255, 182, 193, 0.8);
+            }
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+            animation: titleBounce 2s ease infinite;
+        }
+
+        @keyframes titleBounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .name {
+            color: #ffe66d;
+            font-weight: bold;
+            text-shadow: 2px 2px 15px rgba(255, 230, 109, 0.6);
+        }
+
+        .typing {
+            font-size: 16px;
+            margin-top: 15px;
+            min-height: 90px;
+            line-height: 1.6;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #fff, #ffe6f0);
+            color: #ff5f9e;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        button:active {
+            transform: translateY(-2px) scale(1.02);
+        }
+
+        .hidden {
+            display: none;
+            margin-top: 20px;
+            font-size: 16px;
+            animation: fadeSlideIn 0.8s ease;
+        }
+
+        @keyframes fadeSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        input[type="password"] {
+            padding: 12px 18px;
+            border-radius: 25px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            outline: none;
+            text-align: center;
+            width: 200px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #ff5f9e;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        input[type="password"]:focus {
+            border-color: #fff;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+            transform: scale(1.05);
+        }
+
+        input[type="password"]::placeholder {
+            color: rgba(255, 95, 158, 0.6);
+        }
+
+        #errorMsg,
+        #errorMsg2 {
+            color: #ffe66d;
+            display: none;
+            margin-top: 10px;
+            font-weight: 500;
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-10px);
+            }
+
+            75% {
+                transform: translateX(10px);
+            }
+        }
+
+        #secondPass {
+            display: none;
+            margin-top: 25px;
+            animation: fadeSlideIn 0.8s ease;
+        }
+
+        .surprise-box {
+            display: none;
+            margin-top: 25px;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .surprise-img {
+            width: 140px;
+            height: 180px;
+            border-radius: 20px;
+            object-fit: cover;
+            opacity: 0;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            transition: transform 0.4s;
+            cursor: pointer;
+        }
+
+        .surprise-img:hover {
+            transform: scale(1.1) rotate(2deg);
+        }
+
+        .surprise-img.left {
+            animation: slideLeft 1s forwards;
+        }
+
+        .surprise-img.right {
+            animation: slideRight 1s forwards;
+            animation-delay: 0.2s;
+        }
+
+        @keyframes slideLeft {
+            from {
+                transform: translateX(-80px) rotate(-15deg);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideRight {
+            from {
+                transform: translateX(80px) rotate(15deg);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        /* Balloons */
+        .balloon {
+            position: fixed;
+            bottom: -120px;
+            font-size: 36px;
+            animation: floatBalloon linear infinite;
+            z-index: 0;
+            opacity: 0.9;
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.3));
+        }
+
+        @keyframes floatBalloon {
+            from {
+                transform: translateY(0) translateX(0) rotate(0deg);
+            }
+
+            to {
+                transform: translateY(-120vh) translateX(60px) rotate(20deg);
+            }
+        }
+
+        /* Confetti */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ff5f9e;
+            position: fixed;
+            top: -10px;
+            z-index: 0;
+            animation: confettiFall linear infinite;
+        }
+
+        @keyframes confettiFall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        /* Success message */
+        .success-message {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            font-size: 16px;
+            animation: fadeSlideIn 0.8s ease;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 900px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .side-grid {
+                grid-template-columns: repeat(3, 1fr);
+                margin-top: 20px;
+            }
+
+            .box {
+                height: 120px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+
+            .typing {
+            
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .surprise-box {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .surprise-img {
+                width: 120px;
+                height: 160px;
+            }
+
+            .side-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+        }
+
+        /* Sparkle effect */
+        @keyframes sparkle {
+
+            0%,
+            100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            animation: sparkle 1.5s infinite;
+            pointer-events: none;
+        }
+
+        #surprise {
+            margin-bottom: 0;
+        }
+
+        .box img {
+            animation: cartoonFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes cartoonFloat {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+            }
+
+            50% {
+                transform: translateY(-8px) scale(1.03);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hearts-container" id="heartsContainer"></div>
+
+    <div class="layout">
+        <div class="side-grid" id="leftGrid">
+            <div class="box"><img src="imge/WhatsApp Image 2026-02-06 at 10.10.32 PM (7).jpeg"></div>
+            <div class="box"><img src="imge/WhatsApp Image 2026-02-06 at 10.10.32 PM (6).jpeg"></div>
+            <div class="box"><img src="imge/WhatsApp Image 2026-02-06 at 10.12.48 PM.jpeg"></div>
+            <div class="box"><img src="imge/WhatsApp Image 2026-02-06 at 10.10.30 PM (2).jpeg"></div>
+            <div class="box"><img src="imge/WhatsApp Image 2026-02-06 at 10.10.31 PM (3).jpeg"></div>
+            <div class="box"><img src="imge/WhatsApp Image 2026-02-06 at 10.10.32 PM (5).jpeg"></div>
+
+        </div>
+
+        <div class="card">
+            <div class="photo-container">
+                <img src="imge/WhatsApp Image 2026-02-06 at 11.14.22 PM (1).jpeg" alt="My Love" class="photo">
+            </div>
+
+            <h1>Happy Birthday <span class="name">My Love 🎂</span></h1>
+
+            <div class="typing" id="typing"></div>
+
+            <button onclick="showMessage()">Click for a Surprise 🎁</button>
+
+            <div class="hidden" id="surprise">
+                <p style="margin-bottom:10px; font-size:17px;">
+                    💝 This part opens the memories 💝
+                </p>
+
+                <input type="password" id="passwordInput" placeholder="First password...">
+
+                <br><br>
+                <button onclick="checkPassword()">✨ Unlock ✨</button>
+
+                <p id="errorMsg">Wrong password 💭 Try again!</p>
+
+                <div id="secondPass">
+                    <p style="margin-bottom:10px; font-size:17px;">
+                        🎁 One more step… just for you 🎁
+                    </p>
+
+                    <input type="password" id="passwordInput2" placeholder="Second password...">
+
+                    <br><br>
+                    <button onclick="checkSecondPassword()">🎉 Unlock Surprise 🎉</button>
+
+                    <p id="errorMsg2">Almost… try again 💭</p>
+                </div>
+
+                <div class="surprise-box" id="surpriseBox">
+                    <img src="imge/Screenshot 2026-02-02 140559.png" class="surprise-img left" alt="Special moment">
+                    <img src="imge/Screenshot 2026-02-02 140901.png" class="surprise-img right" alt="Special moment">
+                </div>
+
+                <div class="success-message" id="successMsg">
+                    ✨ Every moment with you is a treasure ✨
+                </div>
+            </div>
+        </div>
+
+        <div class="side-grid" id="rightGrid">
+             <div class="box"><img src="imge/WhatsApp Image 2026-02-06 at 10.10.31 PM (1).jpeg"></div>
+            <div class="box"><img src="imge/WhatsApp Image 2026-02-06 at 10.10.31 PM (2).jpeg"></div>
+            <div class="box"><img src="imge/WhatsApp Image 2026-02-06 at 10.10.32 PM (4).jpeg"></div>
+            <div class="box"><img src="imge/WhatsApp Image 2026-02-06 at 10.11.29 PM.jpeg"></div>
+            <div class="box"><img src="imge/WhatsApp Image 2026-02-06 at 10.12.48 PM (1).jpeg"></div>
+            <div class="box"><img src="imge/WhatsApp Image 2026-02-06 at 10.10.30 PM.jpeg"></div>
+
+        </div>
+    </div>
+
+    <script>
+        // Typing effect
+        const text = "Happy Birthday, Hudha ❤️You are the one I want in my life. I want to grow with you, stay with you, and one day marry you.I know I make mistakes. Sometimes I hurt you, and I’m really sorry for everything. I never wanted to hurt you. But I love you more than you think. I want a life with you. I am happy with you. I love you, Hudha. Love you so much.";
+        let index = 0;
+        const speed = 38;
+        const typingEl = document.getElementById("typing");
+
+        function typeText() {
+            if (index < text.length) {
+                typingEl.innerHTML += text.charAt(index);
+                index++;
+                setTimeout(typeText, speed);
+            }
+        }
+        typeText();
+
+        // Passwords
+        const passwordOne = "angel";
+        const passwordTwo = "forever";
+
+        function showMessage() {
+            document.getElementById("surprise").style.display = "block";
+            createSparkles();
+        }
+
+        function checkPassword() {
+            const val = document.getElementById("passwordInput").value;
+            const err = document.getElementById("errorMsg");
+
+            if (val === passwordOne) {
+                err.style.display = "none";
+                document.getElementById("leftGrid").classList.add("show");
+                document.getElementById("rightGrid").classList.add("show");
+                document.getElementById("secondPass").style.display = "block";
+                createConfetti();
+            } else {
+                err.style.display = "block";
+            }
+        }
+
+        function checkSecondPassword() {
+            const val2 = document.getElementById("passwordInput2").value;
+            const err2 = document.getElementById("errorMsg2");
+
+            if (val2 === passwordTwo) {
+                err2.style.display = "none";
+                document.getElementById("surpriseBox").style.display = "flex";
+                document.getElementById("successMsg").style.display = "block";
+                createConfetti();
+                createSparkles();
+            } else {
+                err2.style.display = "block";
+            }
+        }
+
+        // Balloons
+        const balloons = ["🎈", "🎈", "🎉", "🎊", "💖"];
+
+        function createBalloon() {
+            const balloon = document.createElement("div");
+            balloon.className = "balloon";
+            balloon.innerHTML = balloons[Math.floor(Math.random() * balloons.length)];
+            balloon.style.left = Math.random() * 100 + "vw";
+            balloon.style.animationDuration = (6 + Math.random() * 6) + "s";
+            document.body.appendChild(balloon);
+
+            setTimeout(() => {
+                balloon.remove();
+            }, 12000);
+        }
+
+        setInterval(createBalloon, 300);
+
+        // Floating hearts
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.className = "heart";
+            heart.innerHTML = "💖";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (8 + Math.random() * 4) + "s";
+            heart.style.fontSize = (15 + Math.random() * 10) + "px";
+            document.getElementById("heartsContainer").appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 12000);
+        }
+
+        setInterval(createHeart, 800);
+
+        // Confetti effect
+        function createConfetti() {
+            const colors = ["#ff758c", "#ff7eb3", "#ffe66d", "#a6c1ee", "#fbc2eb"];
+
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement("div");
+                    confetti.className = "confetti";
+                    confetti.style.left = Math.random() * 100 + "vw";
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDuration = (2 + Math.random() * 3) + "s";
+                    confetti.style.animationDelay = Math.random() + "s";
+                    document.body.appendChild(confetti);
+
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 5000);
+                }, i * 30);
+            }
+        }
+
+        // Sparkles
+        function createSparkles() {
+            const card = document.querySelector(".card");
+
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement("div");
+                    sparkle.className = "sparkle";
+                    sparkle.style.left = Math.random() * 100 + "%";
+                    sparkle.style.top = Math.random() * 100 + "%";
+                    sparkle.style.animationDelay = Math.random() + "s";
+                    card.appendChild(sparkle);
+
+                    setTimeout(() => {
+                        sparkle.remove();
+                    }, 1500);
+                }, i * 100);
+            }
+        }
+
+        // Initial sparkle effect
+        window.addEventListener("load", () => {
+            createSparkles();
+        });
+    </script>
+</body>
+
+</html>
